@@ -27,6 +27,7 @@ module Alpaca
           @open_interest_date = json['open_interest_date']
           @close_price = json['close_price']
           @close_price_date = json['close_price_date']
+          # Note - this does not yet include the deliverables data https://docs.alpaca.markets/reference/get-options-contracts
         end
       end
     end
