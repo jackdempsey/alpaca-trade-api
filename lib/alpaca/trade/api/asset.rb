@@ -5,7 +5,8 @@ module Alpaca
     module Api
       class Asset
         attr_reader :id, :asset_class, :exchange, :symbol, :status, :tradable, :marginable,
-                    :shortable, :easy_to_borrow, :fractionable
+                    :shortable, :easy_to_borrow, :fractionable, :name, :maintenance_margin_requirement,
+                    :attributes
 
         def initialize(json)
           @id = json['id']
@@ -18,6 +19,9 @@ module Alpaca
           @shortable = json['shortable']
           @easy_to_borrow = json['easy_to_borrow']
           @fractionable = json['fractionable']
+          @name = json['name']
+          @maintenance_margin_requirement = json['maintenance_margin_requirement']
+          @attributes = json['attributes']
         end
       end
     end
