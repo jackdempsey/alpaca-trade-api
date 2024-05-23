@@ -55,7 +55,8 @@ module Alpaca
           options = { underlying_symbols: underlying_symbols, status: status, expiration_date: expiration_date, expiration_date_gte: expiration_date_gte, expiration_date_lte: expiration_date_lte, root_symbol: root_symbol, type: type, style: style, strike_price_gte: strike_price_gte, strike_price_lte: strike_price_lte, page_token: page_token, limit: limit }
           response = get_request(endpoint, "v2/options/contracts", options.compact)
           json = JSON.parse(response.body)
-          json.map { |item| OptionContract.new(item) }
+          option_contracts = json['option_contracts'].map { |item| OptionContract.new(item) }
+          return option_contracts, json['next_page_token']
         end
 
         # {
