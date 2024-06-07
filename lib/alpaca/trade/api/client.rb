@@ -213,6 +213,7 @@ module Alpaca
             client_order_id: client_order_id
           }
           response = post_request(endpoint, 'v2/orders', params.compact)
+          raise InvalidRequest, JSON.parse(response.body)['message'] if response.status == 400
           raise InsufficientFunds, JSON.parse(response.body)['message'] if response.status == 403
           raise MissingParameters, JSON.parse(response.body)['message'] if response.status == 422
 
